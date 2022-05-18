@@ -1,0 +1,8 @@
+{
+  "name": "boredapestore/loja",
+  "autoload": {
+    "psr-4": {
+      "App\\":"app/"
+    }
+  }
+}

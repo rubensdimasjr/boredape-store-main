@@ -1,0 +1,71 @@
+.menu{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.6s;
+  background: #fff;
+  padding: 20px 5%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+/* Hero Part */
+main {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+}
+
+.titulo h1 {
+  font-weight: 900;
+  font-size: 60px;
+  color: #04111d;
+}
+
+.titulo p {
+  font-size: 1.5em;
+  color: #04111d;
+}
+
+/* About part */
+#about {
+  width: 100%;
+  height: 400px;
+  background: #ccc;
+}
+
+/* Collection part */
+#collection {
+  width: 100%;
+  background: #fff;
+}
+
+#collection .collection-container {
+  max-width: 1200px;
+  margin: 48px auto;
+  display: grid;
+  height: 600px;
+  overflow: auto;
+  /*   border: 1px solid #333; */
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1em;
+  row-gap: 1em;
+}
+
+#collection .text-container {
+  max-width: 1200px;
+  margin: 48px auto;
+  text-align: center;
+}
+
+#collection .text-container h1 {
+  font-weight: 900;
+  font-size: 36px;
+}
+
+#collection .text-container p {
+  margin: auto;
+  max-width: 600px;
+  font-size: 16px;
+  color: #ccc;
+}
+
