@@ -59,20 +59,38 @@ class Produto
   {
 
     if ($this->imagem_produto['name'] != $this->imagem_produto) {
-      echo "É diferente";
+      $produtoDeletado = unlink('./images/' . $this->nome_img);
+
+      if ($produtoDeletado) {
+
+        /* TRABALHANDO COM A IMAGEM */
+        $pasta = "./images/";
+        $nomeDoArquivo = $this->imagem_produto['name'];
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+
+        $produtoEditado = move_uploaded_file($this->imagem_produto['tmp_name'], $pasta . $novoNomeDoArquivo . "." . $extensao);
+
+        if ($produtoEditado) {
+          $link_arquivo = "$novoNomeDoArquivo" . ".$extensao";
+          $preco = str_replace([','], '.', $this->preco_produto);
+
+          return (new Database('produtos'))->update('id_produto = ' . $this->id_produto, [
+            'nome_produto' => $this->nome_produto,
+            'preco_produto' => $preco,
+            'nome_img' => $link_arquivo
+          ]);
+        } else {
+          echo "Falha ao editar imagem!";
+        }
+      }
     }
 
-    if (!$this->imagem_produto) {
-      echo "não tem imagem";
-    }
-
-    exit;
-
-    /*     return (new Database('usuario'))->update('id = ' . $this->id, [
-      'email' => $this->email,
-      'nome' => $this->nome,
-      'senha' => $this->senha
-    ]); */
+    return (new Database('produtos'))->update('id_produto = ' . $this->id_produto, [
+      'nome_produto' => $this->nome_produto,
+      'preco_produto' => $this->preco_produto,
+      'nome_img' => $this->nome_img
+    ]);
   }
 
   public static function getProduto($where = null, $order = null, $limit = null)

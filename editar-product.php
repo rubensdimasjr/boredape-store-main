@@ -7,7 +7,7 @@ use \App\Entity\Produto;
 /* VALIDAÇÃO DO ID */
 
 if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
-  header("Location: admin.php?status=error");
+  header("Location: admin-product.php?status=error");
   exit;
 }
 
@@ -15,7 +15,7 @@ $obProduto = Produto::getProdutoId($_GET['id']);
 
 /* VALIDAÇÃO DO USUARIO */
 if (!$obProduto instanceof Produto) {
-  header("Location: admin.php?status=error");
+  header("Location: admin-product.php?status=error");
   exit;
 }
 
@@ -25,16 +25,10 @@ if (isset($_POST['edita-produto'])) {
   $obProduto->preco_produto = $_POST['preco_produto'];
   $obProduto->imagem_produto = $_FILES['imagem_produto'];
   $obProduto->favoritos = $_POST['favoritos'];
-
-
   $obProduto->atualizarProduto();
 
-  /*   $obUsuario->atualizar(); */
-
-  /*   $obUsuario->cadastrar(); */
-
-  /*   header("Location: admin.php?status=success");
-  exit; */
+  header("Location: admin-product.php?status=success");
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -94,12 +88,11 @@ if (isset($_POST['edita-produto'])) {
                   </div>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" value="<?= $obProduto->nome_produto ?>">
+                  <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" value="<?= $obProduto->nome_produto ?>" required>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" value="<?= $obProduto->preco_produto ?>">
+                  <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" value="<?= $obProduto->preco_produto ?>" required>
                 </div>
-                <input type="hidden" name="favoritos" value="0">
                 <div class="btn-group mb-3">
                   <a href="./admin-product.php" class="btn btn-success me-2">Cancelar</a>
                   <input type="submit" name="edita-produto" class="btn btn-danger " value="Editar Produto">

@@ -27,8 +27,8 @@ foreach ($produtos as $produto) {
                     <td style="vertical-align:middle !important">' . $produto->nome_produto . '</td>
                     <td style="vertical-align:middle !important">' . $produto->preco_produto . '</td>
                     <td style="vertical-align:middle !important">
-                      <a href="edita-product.php?id=' . $usuario->id . '" class="btn btn-secondary">Editar</a>
-                      <a href="excluir-produto.php?id=' . $usuario->id . '" class="btn btn-danger">Deletar</a>
+                      <a href="editar-product.php?id=' . $produto->id_produto . '" class="btn btn-secondary">Editar</a>
+                      <a href="excluir-produto.php?id=' . $produto->id_produto . '" class="btn btn-danger">Deletar</a>
                     </td>
                   </tr>';
 }
@@ -64,6 +64,9 @@ foreach ($produtos as $produto) {
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
+            <a class="nav-link" href="./">Home</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="./admin.php">Administração</a>
           </li>
           <li class="nav-item">
@@ -88,14 +91,14 @@ foreach ($produtos as $produto) {
             <div class="card-body">
               <form enctype="multipart/form-data" method="post">
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto">
+                  <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" required>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto">
+                  <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" required>
                 </div>
                 <div class="mb-4">
                   <label for="imagem_produto" class="form-label">Imagem Produto</label>
-                  <input type="file" class="form-control" name="imagem_produto">
+                  <input type="file" class="form-control" name="imagem_produto" required>
                 </div>
                 <input type="hidden" name="favoritos" value="0">
                 <div class="mb-3 text-center">

@@ -9,11 +9,11 @@ $usuarios = Usuario::getUsuario();
 $resultados = '';
 foreach ($usuarios as $usuario) {
   $resultados .= '<tr>
-                    <td scope="row">' . $usuario->id . '</td>
-                    <td>' . $usuario->nome . '</td>
-                    <td>' . $usuario->email . '</td>
-                    <td>' . $usuario->senha . '</td>
-                    <td>
+                    <td scope="row" style="vertical-align:middle !important">' . $usuario->id . '</td>
+                    <td style="vertical-align:middle !important">' . $usuario->nome . '</td>
+                    <td style="vertical-align:middle !important">' . $usuario->email . '</td>
+                    <td style="vertical-align:middle !important">' . $usuario->senha . '</td>
+                    <td style="vertical-align:middle !important">
                       <a href="editar.php?id=' . $usuario->id . '" class="btn btn-secondary">Editar</a>
                       <a href="excluir.php?id=' . $usuario->id . '" class="btn btn-danger">Deletar</a>
                     </td>
@@ -50,6 +50,9 @@ foreach ($usuarios as $usuario) {
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./">Home</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Administração</a>
             </li>
