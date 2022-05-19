@@ -6,6 +6,9 @@ use \App\Entity\Produto;
 
 $produtos = Produto::getProduto();
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

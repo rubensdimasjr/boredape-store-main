@@ -1,3 +1,32 @@
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use \App\Entity\Usuario;
+
+if (isset($_POST['entrar'])) {
+
+  $email = $_POST['email'] ?? '';
+  $senha = $_POST['senha'] ?? '';
+
+  $obUsuario = Usuario::getUserByEmail($email);
+
+  if (!$obUsuario instanceof Usuario) {
+    header("Location: login.php?error=true");
+    exit;
+  }
+
+  /* VERIFICA A SENHA DO USUARIO */
+  if ($senha != $obUsuario->senha) {
+    header("Location: login.php?error=true");
+    exit;
+  }
+
+  $_SESSION['id'] = $obUsuario->id;
+  header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -45,8 +74,13 @@
       <div class="row mt-5">
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
+            <?php
+            if (isset($_GET['error'])) {
+              echo '<div class="alert alert-danger alert-dismissible" role="alert">Email ou senha estão incorretos!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            }
+            ?>
             <div class="card-body">
-              <form>
+              <form method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" />
@@ -56,7 +90,7 @@
                   <input type="password" class="form-control" name="senha" id="senha" />
                 </div>
                 <div class="mb-3 text-center">
-                  <input type="submit" class="btn btn-primary col-6" value="Entrar" />
+                  <input type="submit" name="entrar" class="btn btn-primary col-6" value="Entrar" />
                 </div>
               </form>
             </div>

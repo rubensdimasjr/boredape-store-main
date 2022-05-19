@@ -48,6 +48,11 @@ class Usuario
     return (new Database('usuario'))->delete('id = ' . $this->id);
   }
 
+  public static function getUserByEmail($email)
+  {
+    return (new Database('usuario'))->select('email = "' . $email . '"')->fetchObject(self::class);
+  }
+
   public static function getUsuario($where = null, $order = null, $limit = null)
   {
     return (new Database('usuario'))->select($where, $order, $limit)
