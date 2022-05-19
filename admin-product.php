@@ -3,6 +3,8 @@ require __DIR__ . '/vendor/autoload.php';
 
 use \App\Entity\Produto;
 
+$produtos = Produto::getProduto();
+
 if (isset($_POST['nome_produto'], $_POST['preco_produto'], $_FILES['imagem_produto'], $_POST['favoritos'])) {
 
   $obProduto = new Produto;
@@ -15,6 +17,20 @@ if (isset($_POST['nome_produto'], $_POST['preco_produto'], $_FILES['imagem_produ
 
   header("Location: admin-product.php?status=success");
   exit;
+}
+
+$resultados = '';
+foreach ($produtos as $produto) {
+  $resultados .= '<tr>
+                    <td><img src="./images/' . $produto->nome_img . '" class="img-fluid rounded-circle" alt="BoredApe-' . $produto->id_produto . '" width="50" height="50"></td>
+                    <td scope="row" style="vertical-align:middle !important">' . $produto->id_produto . '</td>
+                    <td style="vertical-align:middle !important">' . $produto->nome_produto . '</td>
+                    <td style="vertical-align:middle !important">' . $produto->preco_produto . '</td>
+                    <td style="vertical-align:middle !important">
+                      <a href="edita-product.php?id=' . $usuario->id . '" class="btn btn-secondary">Editar</a>
+                      <a href="excluir-produto.php?id=' . $usuario->id . '" class="btn btn-danger">Deletar</a>
+                    </td>
+                  </tr>';
 }
 ?>
 <!DOCTYPE html>
@@ -90,7 +106,7 @@ if (isset($_POST['nome_produto'], $_POST['preco_produto'], $_FILES['imagem_produ
           </div>
         </div>
       </div>
-      <div class="row mt-5 table-responsive">
+      <div class="row mt-5 table-responsive d-flex">
         <table class="table mt-3">
           <thead class="table-dark">
             <tr>
@@ -102,18 +118,7 @@ if (isset($_POST['nome_produto'], $_POST['preco_produto'], $_FILES['imagem_produ
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <img src="" class="img-fluid rounded-circle" alt="BoredApe-1" width="50" height="50">
-              </td>
-              <th scope="row">1</th>
-              <td>Teste</td>
-              <td>9.90</td>
-              <td>
-                <button class="btn btn-secondary my-1">Editar</button>
-                <button class="btn btn-danger">Deletar</button>
-              </td>
-            </tr>
+            <?= $resultados ?>
           </tbody>
         </table>
       </div>

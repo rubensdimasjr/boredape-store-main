@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use \App\Entity\Usuario;
+use \App\Entity\Produto;
 
 /* VALIDAÇÃO DO ID */
 
@@ -11,25 +11,30 @@ if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
   exit;
 }
 
-$obUsuario = Usuario::getUsuarioId($_GET['id']);
+$obProduto = Produto::getProdutoId($_GET['id']);
 
 /* VALIDAÇÃO DO USUARIO */
-if (!$obUsuario instanceof Usuario) {
+if (!$obProduto instanceof Produto) {
   header("Location: admin.php?status=error");
   exit;
 }
 
-if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
+if (isset($_POST['edita-produto'])) {
 
-  $obUsuario->email = $_POST['email'];
-  $obUsuario->nome = $_POST['nome'];
-  $obUsuario->senha = $_POST['senha'];
-  $obUsuario->atualizar();
+  $obProduto->nome_produto = $_POST['nome_produto'];
+  $obProduto->preco_produto = $_POST['preco_produto'];
+  $obProduto->imagem_produto = $_FILES['imagem_produto'];
+  $obProduto->favoritos = $_POST['favoritos'];
+
+
+  $obProduto->atualizarProduto();
+
+  /*   $obUsuario->atualizar(); */
 
   /*   $obUsuario->cadastrar(); */
 
-  header("Location: admin.php?status=success");
-  exit;
+  /*   header("Location: admin.php?status=success");
+  exit; */
 }
 ?>
 <!DOCTYPE html>
@@ -39,7 +44,7 @@ if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editar Usuário</title>
+  <title>Editar Produto</title>
 
   <!-- Bootstrap style -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -80,21 +85,24 @@ if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
         <div class="col-xs-12 col-md-8 col-lg-5 mx-auto">
           <div class="card">
             <div class="card-body">
-              <form method="post">
-                <div class="mb-3">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" value="<?= $obUsuario->email ?>" />
+              <form enctype="multipart/form-data" method="post">
+                <div class="mb-4">
+                  <label for="imagem_produto" class="form-label">Imagem Produto</label>
+                  <input type="file" class="form-control" name="imagem_produto" disabled>
+                  <div class="my-2 text-center">
+                    <button class="btn btn-outline-warning">Mudar imagem</button>
+                  </div>
                 </div>
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Nome</label>
-                  <input type="text" class="form-control" name="nome" id="nome" value="<?= $obUsuario->nome ?>" />
+                  <input type="text" class="form-control" placeholder="Nome do Produto" name="nome_produto" value="<?= $obProduto->nome_produto ?>">
                 </div>
                 <div class="mb-3">
-                  <label for="senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" name="senha" id="senha" value="<?= $obUsuario->senha ?>" />
+                  <input type="text" class="form-control" placeholder="Preço do Produto" name="preco_produto" value="<?= $obProduto->preco_produto ?>">
                 </div>
-                <div class="mb-3 text-center">
-                  <input type="submit" class="btn btn-primary col-6" value="Editar" />
+                <input type="hidden" name="favoritos" value="0">
+                <div class="btn-group mb-3">
+                  <a href="./admin-product.php" class="btn btn-success me-2">Cancelar</a>
+                  <input type="submit" name="edita-produto" class="btn btn-danger " value="Editar Produto">
                 </div>
               </form>
             </div>
