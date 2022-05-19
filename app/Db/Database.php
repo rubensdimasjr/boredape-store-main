@@ -11,7 +11,7 @@ class Database
   const HOST = 'localhost';
   const NAME = 'boredape';
   const USER = 'root';
-  const PASS = '123456';
+  const PASS = '';
 
   private $table;
 

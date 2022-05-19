@@ -14,7 +14,7 @@
     />
 
     <!-- Reset Css -->
-    <link href="../assets/css/reset.css" rel="stylesheet" />
+    <link href="./assets/css/reset.css" rel="stylesheet" />
 
     <!-- Icon Style -->
     <script
@@ -47,10 +47,10 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./contact.html">Contato</a>
+              <a class="nav-link" href="./contact.php">Contato</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../">Página Inicial</a>
+              <a class="nav-link" href="./">Página Inicial</a>
             </li>
           </ul>
         </div>
@@ -95,7 +95,7 @@
               <div class="card-footer text-center">
                 <p class="my-3">
                   Não tem cadastro?
-                  <a href="./register.html"> Cadastre-se</a>
+                  <a href="./cadastrar.php"> Cadastre-se</a>
                 </p>
               </div>
             </div>

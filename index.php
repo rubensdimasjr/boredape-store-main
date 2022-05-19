@@ -41,10 +41,10 @@
               <a class="nav-link" href="#">Coleção</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./includes/contact.html">Contato</a>
+              <a class="nav-link" href="./contact.php">Contato</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./includes/login.html">Entrar/Cadastrar</a>
+              <a class="nav-link" href="./login.php">Entrar/Cadastrar</a>
             </li>
           </ul>
         </div>

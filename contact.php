@@ -14,7 +14,7 @@
     />
 
     <!-- Reset Css -->
-    <link href="../assets/css/reset.css" rel="stylesheet" />
+    <link href="./assets/css/reset.css" rel="stylesheet" />
 
     <!-- Icon Style -->
     <script
@@ -48,10 +48,10 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./login.html">Entrar/Cadastrar</a>
+                <a class="nav-link" href="./login.php">Entrar/Cadastrar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../">Página Inicial</a>
+                <a class="nav-link" href="./">Página Inicial</a>
               </li>
             </ul>
           </div>
@@ -64,7 +64,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-md-12 col-lg-6 mb-4">
             <img
-              src="../assets/images/contact_us.svg"
+              src="./assets/images/contact_us.svg"
               class="img-fluid"
               alt="Contact Us"
             />
