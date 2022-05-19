@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Akshar:wght@400;500&display=swap");
+
+.font_meta {
+  font-family: "Akshar", sans-serif;
+}
+
+nav {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.details-wrapper h5,
+.details-wrapper h2,
+.favorites {
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% auto auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "a b b"
+    "a c c";
+  grid-gap: 1em;
+  /*       background-color: #2196F3; */
+  padding: 10px;
+}
+
+.grid-container > .card-wrapper {
+  grid-area: a;
+}
+
+.grid-container > .details-wrapper {
+  grid-area: b;
+}
+
+.grid-container > .price-wrapper {
+  grid-area: c;
+}
+
+@media screen and (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "b b b"
+      "a a a"
+      "c c c";
+  }
+}

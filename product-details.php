@@ -1,3 +1,26 @@
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use \App\Entity\Produto;
+
+/* VALIDAÇÃO DO ID */
+
+if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+  header("Location: index.php?status=error");
+  exit;
+}
+
+$obProduto = Produto::getProdutoId($_GET['id']);
+
+/* VALIDAÇÃO DO USUARIO */
+if (!$obProduto instanceof Produto) {
+  header("Location: index.php?status=error");
+  exit;
+}
+
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -99,19 +122,19 @@
             <i class="fa-brands fa-ethereum" style="font-size: 16px; color: #ccc"></i>
             <span style="color: #ccc">
               <i class="fa-solid fa-heart"></i>
-              68
+              <?= $obProduto->favoritos ?>
             </span>
           </div>
-          <img src="./assets/images/1.png" class="img-fluid" alt="boredape-1" />
+          <img src="./images/<?= $obProduto->nome_img ?>" width="600" height="600" class="img-fluid" alt="boredape-<?= $obProduto->id_produto ?>" />
         </div>
       </div>
       <div class="details-wrapper p-md-3 px-3">
         <h5 class="my-2">BoredApe Store</h5>
-        <h2 class="my-3">#BoredApe-1</h2>
+        <h2 class="my-3">#<?= $obProduto->nome_produto ?></h2>
         <div class="favorites d-flex my-2">
           <p>
             <i class="fa-solid fa-heart"></i>
-            68 favoritos
+            <?= $obProduto->favoritos ?> favoritos
           </p>
         </div>
       </div>
@@ -122,7 +145,7 @@
             <div class="price-content d-flex">
               <p class="fw-bold" style="font-size: 32px">
                 <i class="fa-brands fa-ethereum" style="font-size: 24px"></i>
-                0.05
+                <?= $obProduto->preco_produto ?>
                 <span style="font-size: 16px">($150,67)</span>
               </p>
             </div>
