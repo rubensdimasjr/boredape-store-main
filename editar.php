@@ -26,13 +26,9 @@ if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
   $obUsuario->senha = $_POST['senha'];
   $obUsuario->atualizar();
 
-  echo "<pre>";
-  print_r($obUsuario);
-  echo "</pre>";
-  exit;
   /*   $obUsuario->cadastrar(); */
 
-  header("Location: index.php?status=success");
+  header("Location: admin.php?status=success");
   exit;
 }
 ?>

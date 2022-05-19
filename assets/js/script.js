@@ -22,7 +22,7 @@ $.when($.ready).then(function () {
       .find("div.iconWrapper")
       .prepend(
         $(
-          "<a href='./pages/product-details.html' class='buy'>Compre Agora!</a>"
+          "<a href='./product-details.php' class='buy'>Compre Agora!</a>"
         )
       );
   });

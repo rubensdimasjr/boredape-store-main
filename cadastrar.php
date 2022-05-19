@@ -12,7 +12,7 @@ if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
   $obUsuario->senha = $_POST['senha'];
   $obUsuario->cadastrar();
 
-  header("Location: index.php?status=success");
+  header("Location: login.php?status=success");
   exit;
 }
 ?>
@@ -67,18 +67,18 @@ if (isset($_POST['email'], $_POST['nome'], $_POST['senha'])) {
               <form method="post">
                 <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" required/>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="exemplo123@email.com" required />
                 </div>
                 <div class="mb-3">
                   <label for="nome" class="form-label">Nome</label>
-                  <input type="text" class="form-control" name="nome" id="nome" required/>
+                  <input type="text" class="form-control" name="nome" id="nome" required />
                 </div>
                 <div class="mb-3">
                   <label for="senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" name="senha" id="senha" required/>
+                  <input type="password" class="form-control" name="senha" id="senha" required />
                 </div>
                 <div class="mb-3 text-center">
-                  <input type="submit" class="btn btn-primary col-6" value="Cadastrar" required/>
+                  <input type="submit" class="btn btn-primary col-6" value="Cadastrar" required />
                 </div>
               </form>
             </div>
